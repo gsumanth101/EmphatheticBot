@@ -1,61 +1,80 @@
-import nltk
-nltk.download('popular')
-from nltk.stem import WordNetLemmatizer
-lemmatizer = WordNetLemmatizer()
 import pickle
 import numpy as np
-from keras.models import load_model
-model = load_model('model1.h5')
-import json
-import random
-intents = json.loads(open('intents.json').read())
-words = pickle.load(open('texts.pkl','rb'))
-classes = pickle.load(open('labels.pkl','rb'))
-def clean_up_sentence(sentence):
-    sentence_words = nltk.word_tokenize(sentence)
-    sentence_words = [lemmatizer.lemmatize(word.lower()) for word in sentence_words]
-    return sentence_words
-def bow(sentence, words, show_details=True):
-    sentence_words = clean_up_sentence(sentence)
-    bag = [0]*len(words)  
-    for s in sentence_words:
-        for i,w in enumerate(words):
-            if w == s: 
-                bag[i] = 1
-                if show_details:
-                    print ("found in bag: %s" % w)
-    return(np.array(bag))
-def predict_class(sentence, model):
-    p = bow(sentence, words,show_details=False)
-    res = model.predict(np.array([p]))[0]
-    ERROR_THRESHOLD = 0.25
-    results = [[i,r] for i,r in enumerate(res) if r>ERROR_THRESHOLD]
-    results.sort(key=lambda x: x[1], reverse=True)
-    return_list = []
-    for r in results:
-        return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
-    return return_list
-def getResponse(ints, intents_json):
-    tag = ints[0]['intent']
-    list_of_intents = intents_json['intents']
-    for i in list_of_intents:
-        if(i['tag']== tag):
-            result = random.choice(i['responses'])
-            break
-    return result
-def chatbot_response(msg):
-    ints = predict_class(msg, model)
-    res = getResponse(ints, intents)
-    return res
-from flask import Flask, render_template, request
+import matplotlib.pyplot as plt
+from flask import Flask, render_template, request, send_file
+import io
+import os
+
 app = Flask(__name__)
-app.static_folder = 'static'
-@app.route("/")
-def home():
-    return render_template("index.html")
-@app.route("/get")
-def get_bot_response():
-    userText = request.args.get('msg')
-    return chatbot_response(userText)
-if __name__ == "__main__":
+
+# Load the model
+with open('model.pkl', 'rb') as model_file:
+    model = pickle.load(model_file)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/submit_form', methods=['GET', 'POST'])
+def submit_form():
+    if request.method == 'POST':
+        # Get form data
+        type_of_food = request.form['typeOfFood']
+        number_of_guests = int(request.form['numberOfGuests'])
+        event_type = request.form['eventType']
+        quantity_of_food = float(request.form['quantityOfFood'])
+        storage_conditions = request.form['storageConditions']
+        purchase_history = request.form['purchaseHistory']
+        seasonality = request.form['seasonality']
+        preparation_method = request.form['preparationMethod']
+        geographical_location = request.form['geographicalLocation']
+        pricing = float(request.form['pricing'])
+
+        # Prepare input features for the model
+        input_features = np.array([[type_of_food, number_of_guests, event_type, quantity_of_food,
+                                    storage_conditions, purchase_history, seasonality,
+                                    preparation_method, geographical_location, pricing]])
+
+        # Make prediction
+        prediction = model.predict(input_features)
+
+        item = ""
+        value = int(input_features[0][0])
+        if value == 0:
+            item = "Baked Goods"
+        elif value == 1:
+            item = "Dairy Products"
+        elif value == 2:
+            item = "Fruites"
+        elif value == 3:
+            item = "Meat"
+        elif value == 4:
+            item = "Vegetables"
+        else:
+            item = "Other"
+
+        # Generate graph
+        plt.figure(figsize=(10, 6))
+        plt.bar(['Number of Guests', 'Quantity of Food', 'Prediction'], [number_of_guests, quantity_of_food, prediction[0]])
+        plt.xlabel('Category')
+        plt.ylabel('Value')
+        plt.title('Number of Guests, Quantity of Food, and Prediction')
+        graph_path = os.path.join('static', 'graph.png')
+        plt.savefig(graph_path)
+        plt.close()
+
+        # Render result
+        return render_template('result.html', prediction=prediction[0], item=item, graph_url=graph_path)
+
+    return render_template('join.html')
+
+if __name__ == '__main__':
     app.run(debug=True)

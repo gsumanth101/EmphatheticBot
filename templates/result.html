@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Site favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="static/favicon/site.webmanifest">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('{{ url_for("static", filename="images/index.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 50%;
+            max-width: 1200px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        h6 {
+            cursor: pointer;
+            font-size: 1.5em;
+            margin: 0;
+            padding: 10px;
+            transition: color 0.3s;
+            color: #000;
+        }
+
+        h6.active {
+            border-bottom: 2px solid #000;
+            color: #000;
+        }
+
+        h6:hover {
+            color: #777;
+        }
+
+        .content-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-container, .right-container {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .left-container {
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .right-container {
+            text-align: center;
+        }
+
+        .graph, .result {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+        }
+
+        .graph.active, .result.active {
+            display: flex;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: silver;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 25px;
+            color: silver;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/submit_form" class="back-link">Back</a>
+    <div class="login-container">
+        <div class="header-container">
+            <h6 id="result-heading" class="active">Prediction Result</h6>
+            <h6 id="graph-heading">Prediction Graph</h6>
+        </div>
+        <div class="content-section">
+            <div class="left-container">
+                <div class="graph" id="graph-section">
+                    <img src="{{ graph_url }}" alt="Graph" height="350px" width="450px">
+                </div>
+                <div class="result active" id="result-section">
+                    <p>The predicted wastage of <em style="color: #000;">{{item}}</em>  amount is: <em style="color: #000;">{{prediction}}</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const graphHeading = document.getElementById('graph-heading');
+        const resultHeading = document.getElementById('result-heading');
+        const graphSection = document.getElementById('graph-section');
+        const resultSection = document.getElementById('result-section');
+
+        graphHeading.addEventListener('click', () => {
+            graphSection.classList.add('active');
+            resultSection.classList.remove('active');
+            graphHeading.classList.add('active');
+            resultHeading.classList.remove('active');
+        });
+
+        resultHeading.addEventListener('click', () => {
+            resultSection.classList.add('active');
+            graphSection.classList.remove('active');
+            resultHeading.classList.add('active');
+            graphHeading.classList.remove('active');
+        });
+    </script>
+</body>
+
+</html>

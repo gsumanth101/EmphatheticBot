@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-TileColor" content="#ffffff">       
+    <meta name="theme-color" content="#ffffff"> 
+    <!-- Site favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="static/favicon/site.webmanifest">
+    <link rel="mask-icon" href="static/favicon/safari-pinned-tab.svg" color="#5bbad5">   
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>SustainableEats-CONTACTUS</title>
+    <style>
+        body {
+            background-image: url('{{ url_for("static", filename="images/bg.jpeg") }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Ensure body height is 100vh */
+            overflow: hidden; /* Prevent body scroll */
+        }
+        .content {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+        .section {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            color: white; 
+            position: absolute; /* Position it absolutely */
+            bottom: 0;
+            left: 0;
+            margin: 20px; /* Optional: Add margin for better spacing */
+            background: rgba(0, 0, 0, 0); /* Optional: Add background for readability */
+            border-radius: 10px; /* Optional: Add border radius */
+            width: 750px; /* Decreased width */
+        }
+        .section-text {
+            flex: 1;
+        }
+        b {
+            font-size: 20px;
+            color: skyblue;
+        }
+        a {
+            color: skyblue;
+            text-decoration: none;
+        }
+        a.back-link {
+            position: absolute;
+            color: silver;
+            top: 20px; /* Adjusted top position */
+            left: 20px; /* Adjusted left position */
+            font-weight: bold;
+            font-size: 20px;
+        }
+        a.back-link:hover {
+            color: skyblue; /* Change color on hover */
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="content">
+        <a href="/" class="back-link">Back</a>
+        <div id="contact" class="section">
+            <div class="section-text">
+                <b>Have a question? Need assistance? Don't hesitate to get in touch. Our friendly team is here to provide you with the support you need.</b><br><br>
+                <b>Your trust is the foundation of our success. Contact us with confidence, knowing that we're committed to earning and maintaining your trust.</b>        
+                <h2>Contact Us</h2>
+                <p>
+                    <i class="fas fa-phone-alt"></i> Phone: <a href="tel:+123456789">+91 123456789</a>
+                </p>
+                <p>
+                    <i class="fas fa-globe"></i> Website: <a href="https://www.example.com">http://127.0.0.1:5000/</a>
+                </p>
+                <p>
+                    <i class="fas fa-envelope"></i> Email: <a href="mailto:example@example.com">sustainableeats@gmail.com</a>
+                </p>
+            </div>
+        </div>
+    </div>    
+</body>
+</html>

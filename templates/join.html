@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Site favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="static/favicon/site.webmanifest">
+    <title>SustainableEats-JOINUS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('{{ url_for("static", filename="images/join.jpg") }}');
+            background-size: cover;
+            background-attachment: fixed; 
+            background-position: center;
+            height: 100vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; 
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.3); 
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px; 
+            max-height: 80vh; 
+            overflow-y: auto; 
+        }
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            backdrop-filter: blur(5px); 
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        .form-container .submit-button-container {
+            display: flex;
+            justify-content: center;
+        }
+        .form-container button {
+            width: 150px; 
+            padding: 10px;
+            background-color: #333333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #218838;
+        }
+        a.back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: silver;
+            font-weight: bold;
+            font-size: 20px; 
+            text-decoration: none;
+        }
+        a.back-link:hover {
+            color: skyblue; /* Change color on hover */
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">Back</a>
+    <div class="form-container">
+        <h1>QuantityCheck Form</h1>
+        <form action="/submit_form" method="post">
+            <label for="typeOfFood">Type of Food</label>
+            <select name="typeOfFood" id="typeOfFood">
+                <option value="0">Baked Goods</option>
+                <option value="1">Dairy Products</option>
+                <option value="2">Fruits</option>
+                <option value="3">Meat</option>
+                <option value="4">Vegetables</option>
+            </select>
+
+            <label for="numberOfGuests">Number of Guests</label>
+            <input type="number" id="numberOfGuests" name="numberOfGuests" required>
+
+            <label for="eventType">Event Type</label>
+            <select name="eventType" id="eventType">
+                <option value="0">Birthday</option>
+                <option value="1">Corporate</option>
+                <option value="2">Social Gathering</option>
+                <option value="3">Wedding</option>
+            </select>
+
+            <label for="quantityOfFood">Quantity of Food</label>
+            <input type="number" id="quantityOfFood" name="quantityOfFood" required>
+
+            <label for="storageConditions">Storage Conditions</label>
+            <select name="storageConditions" id="storageConditions">
+                <option value="0">Refrigerated</option>
+                <option value="1">Room Temperature</option>
+            </select>
+
+            <label for="purchaseHistory">Purchase History</label>
+            <select name="purchaseHistory" id="purchaseHistory">
+                <option value="0">Occasional</option>
+                <option value="1">Regular</option>
+            </select>
+
+            <label for="seasonality">Seasonality</label>
+            <select name="seasonality" id="seasonality">
+                <option value="0">All Seasons</option>
+                <option value="1">Summer</option>
+                <option value="2">Winter</option>
+            </select>
+
+            <label for="preparationMethod">Preparation Method</label>
+            <select name="preparationMethod" id="preparationMethod">
+                <option value="0">Buffet</option>
+                <option value="1">Finger Food</option>
+                <option value="2">Sit-Down Dinner</option>
+            </select>
+
+            <label for="geographicalLocation">Geographical Location</label>
+            <select name="geographicalLocation" id="geographicalLocation">
+                <option value="0">Rural</option>
+                <option value="1">Sub-Urban</option>
+                <option value="2">Urban</option>
+            </select>
+
+            <label for="pricing">Pricing</label>
+            <select name="pricing" id="pricing">
+                <option value="0">High</option>
+                <option value="1">Low</option>
+                <option value="2">Moderate</option>
+            </select>
+            
+            <div class="submit-button-container">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

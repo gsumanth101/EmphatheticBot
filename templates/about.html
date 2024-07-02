@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>SustainableEats-ABOUTUS</title>
+    <!-- Site favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="static/favicon/site.webmanifest">
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/core.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/icon-font.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('{{ url_for("static", filename="developers/bg.png") }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        .navbar {
+            position: relative;
+        }
+
+        img {
+            width: 100px;
+            height: auto;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        .card {
+            border-radius: 20px;
+            filter: drop-shadow(10px 10px 10px);
+            width: 220px;
+            margin-right: 5px;
+            margin-bottom: 20px;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-title {
+            color: blue;
+        }
+
+        .card-link {
+            color: blue;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        h5 {
+            color: blue;
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            color: blue;
+            font-size: 20px;
+        }
+
+        .navbar-nav .nav-item .nav-link:hover {
+            color: darkblue;
+        }
+
+        .back-link {
+            position: absolute;
+            right: 20px;
+            font-size: 20px;
+            color: blue;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: darkblue;
+        }
+    </style>
+</head>
+
+<body class="login-page">
+    <div class="login-header box-shadow">
+        <div class="container-fluid">
+            <nav class="navbar navbar-light d-flex justify-content-between">
+                <a class="navbar-brand" href="#" style="font-size: small;">
+                    <h1 style="font-family: cursive;">SustainableEats</h1>
+                    <h5>Developers Details...</h5>
+                </a>
+                <a href="/" class="back-link">Back</a>
+            </nav>
+        </div>
+    </div>
+    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+        <div class="container" style="font-size: small;">
+            <div class="row justify-content-center">
+                <!-- Card 1 -->
+                <section class="col-md">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='developers/surekha.jpg') }}" alt="Developer Image" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: small;">BRUNDAVANAM SUREKHA</h5>
+                            <ul style="font-size: smaller;">
+                                <li>98220040005</li>
+                                <li>UG-CSE/AIML (2022-2025)</li>
+                                <li>FULL STACK DEVELOPER</li>
+                            </ul><br>
+                            <a href="https://www.linkedin.com/in/surekha-brundavanam-66a07b260/" class="card-link">LinkedIn Profile</a><br>
+                            <a href="https://github.com/BRUNDAVANAMSUREKHA" class="card-link">GitHub Profile</a><br>
+                            <a href="https://portfolio-surekha-1234.my.canva.site/portfolio" class="card-link">Portfolio</a>
+                        </div>
+                    </div>
+                </section>
+                <!-- Card 2 -->
+                <section class="col-md">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='developers/subbu.png') }}" alt="Developer Image" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: small;">PERAM SUBBARAO</h5><br>
+                            <ul style="font-size: smaller;">
+                                <li>9921004559</li>
+                                <li>UG-CSE/AIML (2021-2025)</li>
+                                <li>FULL STACK DEVELOPER</li>
+                            </ul><br>
+                            <a href="https://www.linkedin.com/in/subbarao-peram-309a66235/" class="card-link">LinkedIn Profile</a><br>
+                            <a href="https://github.com/PERAMSUBBARAO" class="card-link">GitHub Profile</a><br>
+                            <a href="https://portfolio-subbarao-1234.my.canva.site/" class="card-link">Portfolio</a><br>
+                        </div>
+                    </div>
+                </section>
+                <!-- Card 3 -->
+                <section class="col-md">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='developers/sumanth.png') }}" alt="Developer Image" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: small;">GORLA BUCHAYYAGARI SUMANTH</h5>
+                            <ul style="font-size: smaller;">
+                                <li>9921004235</li>
+                                <li>UG-CSE/AIML (2021-2025)</li>
+                                <li>MACHINE LEARNING</li>
+                            </ul>
+                            <a href="https://www.linkedin.com/in/gorla-buchayyagari-sumanth-486bb7221/" class="card-link">LinkedIn Profile</a><br>
+                            <a href="https://github.com/gsumanth101" class="card-link">GitHub Profile</a><br>
+                            <a href="https://sumanthyadav.netlify.app/" class="card-link">Portfolio</a>
+                        </div>
+                    </div>
+                </section>
+                <!-- Card 4 -->
+                <section class="col-md">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='developers/devi.png') }}" alt="Developer Image" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: small;">K DEVISREE</h5>
+                            <ul style="font-size: smaller;">
+                                <li>99210041814</li>
+                                <li>UG-CSE/AIML (2021-2025)</li>
+                                <li>MACHINE LEARNING</li>
+                            </ul><br>
+                            <a href="https://www.linkedin.com/in/venkata-keerthi-kovi-22b20b286?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="card-link">LinkedIn Profile</a><br>
+                            <a href="#" class="card-link">GitHub Profile</a><br>
+                            <a href="#" class="card-link">Portfolio</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
